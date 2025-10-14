@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Personal Page";
+}
+
+
+@* TODO Every user has their own personal page, where they can manage two sortable/filterable tables: *@
+@* A table of inventories they own (with options to create new, delete, or edit). *@
+@* A table of inventories they have write access to. *@
+@* *@
+@* Each inventory in the table functions as a link to its dedicated page, which contains several tabs: *@
+@* Table of items in the inventory (with links to individual item pages). *@
+@* Discusison section. *@
+@* General settings — title, description, etc. *@
+@* Custom inventory numbers. *@
+@* Access settings — either all authenticated users (for public inventories) or specific users (for non-public ones). *@
+@* Editable set of fields for all items in the inventory. *@
+@* Inventory statistics/aggregation, such as the number of items, averages and ranges for numeric fields, most frequently used values for string fields, etc. The owner doesn't edit anything on this tab. *@
+@* *@
+@* For users with write access (but not ownership), only the 1st and 2nd tabs are accessible in edit mode (items). *@
+@* *@
+@* The inventory author and users with write access can: *@
+@* Click any item to open it in edit mode. *@
+@* Delete existing items. *@
+@* Add new items. *@
