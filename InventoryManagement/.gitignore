@@ -1,0 +1,95 @@
+﻿# -----------------------------
+# Core .NET & Blazor
+# -----------------------------
+bin/
+obj/
+out/
+artifacts/
+*.dll
+*.exe
+*.pdb
+*.log
+*.cache
+*.db
+*.db-shm
+*.db-wal
+
+# Launch settings
+**/Properties/launchSettings.json
+
+# User secrets
+**/secrets.json
+
+# Publish output
+**/publish/
+**/dist/
+**/wwwroot/dist/
+**/wwwroot/lib/
+
+# Blazor build artifacts
+**/wwwroot/_framework/
+**/wwwroot/_content/
+*.blazor.config
+*.blazor.publish.json
+
+# -----------------------------
+# Rider / JetBrains IDE files
+# -----------------------------
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# -----------------------------
+# VS Code (if you sometimes use it)
+# -----------------------------
+.vscode/
+
+# -----------------------------
+# OS-specific
+# -----------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# -----------------------------
+# Node / Frontend (if using JS/TS interop)
+# -----------------------------
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+package-lock.json
+*.tsbuildinfo
+
+# -----------------------------
+# NuGet
+# -----------------------------
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# -----------------------------
+# Backup / Temp
+# -----------------------------
+*.bak
+*.orig
+*.tmp
+*.swp
+*.swo
+*.user
+*.userosscache
+*.suo
+*.rsuser
