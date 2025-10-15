@@ -14,13 +14,36 @@ artifacts/
 *.db-shm
 *.db-wal
 
+# -----------------------------
+# App settings & secrets
+# -----------------------------
+# Ignore sensitive configs
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.*.json
+
+# Keep only safe template/reference files
+!appsettings.Template.json
+!appsettings.Example.json
+
 # Launch settings
 **/Properties/launchSettings.json
 
 # User secrets
 **/secrets.json
 
+# -----------------------------
+# Entity Framework Core
+# -----------------------------
+# Migrations build outputs
+**/Migrations/obj/
+**/Migrations/bin/
+
+# -----------------------------
 # Publish output
+# -----------------------------
 **/publish/
 **/dist/
 **/wwwroot/dist/
@@ -40,7 +63,7 @@ artifacts/
 *.DotSettings.user
 
 # -----------------------------
-# VS Code (if you sometimes use it)
+# Visual Studio Code
 # -----------------------------
 .vscode/
 
