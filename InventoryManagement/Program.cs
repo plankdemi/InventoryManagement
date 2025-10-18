@@ -1,4 +1,6 @@
 using InventoryManagement.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement;
@@ -9,7 +11,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+     
         builder.Services.AddControllersWithViews();
         
         builder.Services.AddDbContext<AppDbContext>(options =>
@@ -19,19 +21,37 @@ public class Program
             )
         );
 
+        builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Login";
+                options.AccessDeniedPath = "/Login";
+            })
+            .AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.CallbackPath = "/signin-google"; // default path
+            });
+
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+           
             app.UseHsts();
         }
 
         app.UseHttpsRedirection();
         app.UseRouting();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapStaticAssets();

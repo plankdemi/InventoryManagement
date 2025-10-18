@@ -4,79 +4,44 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace InventoryManagement.Controllers
 {
     [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly AppDbContext _context;
-        
 
         public RegisterController(AppDbContext context)
         {
             _context = context;
-            
         }
 
-       
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(User user)
+        public async Task<IActionResult> Index([FromForm] User user)
         {
             if (!ModelState.IsValid)
-            {
-                return View(user);
-            }
+                return BadRequest(new { message = "Invalid form data." });
 
-           
             var existingUser = await _context.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Username == user.Username);
 
             if (existingUser != null)
-            {
-                ModelState.AddModelError("Email", "This email is already registered.");
-                return View(user);
-            }
+                return Conflict(new { message = "This email is already registered." });
 
             user.CreatedAt = DateTime.UtcNow;
-            
-
             _context.Users.Add(user);
 
             try
             {
                 await _context.SaveChangesAsync();
-
-               
-                
-
-                TempData["SuccessMessage"] = "User registered successfully! Check your email!";
-                return RedirectToAction("Index", "Login");
+                return Ok(new { message = "Registration successful!" });
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                
-                if (ex.InnerException != null && ex.InnerException.Message.Contains("Duplicate entry"))
-                {
-                    ModelState.AddModelError("Email", "This email is already registered.");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "An error occurred while saving. Please try again.");
-                }
-
-                return View(user); 
+                return StatusCode(500, new { message = "An error occurred while saving. Please try again." });
             }
         }
-
-
     }
 }

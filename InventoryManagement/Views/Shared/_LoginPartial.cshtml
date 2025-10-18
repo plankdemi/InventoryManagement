@@ -1,13 +1,26 @@
 ﻿<form id="loginForm">
     <div class="mb-3">
-        <label for="Email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" required />
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" class="form-control" id="userName" name="userName" required />
     </div>
     <div class="mb-3">
-        <label for="Password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="Password" name="Password" required />
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required />
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe" />
+        <label class="form-check-label" for="rememberMe">Remember me</label>
     </div>
     <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+    
+    <div class="text-center mb-3">
+        <hr />
+        <p>or</p>
+        <a class="btn btn-outline-dark w-100" href="/Login/GoogleLogin">
+            <img src="https://developers.google.com/identity/images/g-logo.png" width="20" class="me-2" />
+            Sign in with Google
+        </a>
+    </div>
 
     <div class="text-center">
         <small>Don't have an account?
@@ -15,3 +28,4 @@
         </small>
     </div>
 </form>
+
