@@ -36,12 +36,13 @@ namespace InventoryManagement.Controllers
                 return RedirectToAction("Index", "Home");
 
             var email = result.Principal.FindFirstValue(ClaimTypes.Email);
-            var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+            
 
             var user = await GetOrCreateUserAsync(email, "Google");
 
-            var claims = new List<Claim>(result.Principal.Claims)
+            var claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Name, user.Username),
                 new Claim("UserId", user.Id.ToString())
             };
 
@@ -69,7 +70,7 @@ namespace InventoryManagement.Controllers
                 return RedirectToAction("Index", "Home");
 
             var email = result.Principal.FindFirstValue(ClaimTypes.Email);
-            var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+            
 
             if (string.IsNullOrEmpty(email))
             {
@@ -79,8 +80,9 @@ namespace InventoryManagement.Controllers
 
             var user = await GetOrCreateUserAsync(email, "Facebook");
 
-            var claims = new List<Claim>(result.Principal.Claims)
+            var claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Name, user.Username),
                 new Claim("UserId", user.Id.ToString())
             };
 
