@@ -16,6 +16,7 @@ public class User
 
     [Required, MaxLength(100)] 
     public string Username { get; set; }
+    public string AuthProvider { get; set; } = "Local";
 
     [Required, PasswordPropertyText, MaxLength(100)]
     public string Password { get; set; }

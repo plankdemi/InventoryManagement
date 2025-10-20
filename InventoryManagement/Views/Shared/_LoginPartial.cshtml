@@ -1,25 +1,32 @@
 ﻿<form id="loginForm">
+    @Html.AntiForgeryToken()
     <div class="mb-3">
         <label for="userName" class="form-label">Username</label>
-        <input type="text" class="form-control" id="userName" name="userName" required />
+        <input type="text" class="form-control" id="userName" name="userName" required/>
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required />
+        <input type="password" class="form-control" id="password" name="password" required/>
     </div>
     <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe" />
+        <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe"/>
         <label class="form-check-label" for="rememberMe">Remember me</label>
     </div>
     <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
-    
+
     <div class="text-center mb-3">
-        <hr />
+        <hr/>
         <p>or</p>
-        <a class="btn btn-outline-dark w-100" href="/Login/GoogleLogin">
-            <img src="https://developers.google.com/identity/images/g-logo.png" width="20" class="me-2" />
+        <a class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center mb-2" href="/Login/GoogleLogin">
+            <img src="https://developers.google.com/identity/images/g-logo.png" width="20" class="me-2" alt="Google logo" />
             Sign in with Google
         </a>
+
+        <a class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center" href="/Login/FacebookLogin">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="20" class="me-2" alt="Facebook logo" />
+            Sign in with Facebook
+        </a>
+
     </div>
 
     <div class="text-center">

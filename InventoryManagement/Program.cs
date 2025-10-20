@@ -36,6 +36,11 @@ public class Program
                 googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
                 googleOptions.CallbackPath = "/signin-google"; // default path
+            })
+            .AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
             });
 
         var app = builder.Build();
