@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManagement.Models;
 using InventoryManagement.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Controllers;
 
@@ -26,6 +27,27 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Inventory>>> GetAllInventorySortByNewest()
+    {
+        var inventories = await _context.Inventories
+            .AsNoTracking()
+            .OrderByDescending(i=>i.CreatedAt)
+            .ToListAsync();
+        return Ok(inventories);
+    }
+        
+    [HttpGet]    
+    public async Task<ActionResult<IEnumerable<Inventory>>> GetAllInventorySortByPopularity()
+    {
+        var inventories = await _context.Inventories
+            .AsNoTracking()
+            .OrderByDescending(i=>i.NumofItems)
+            .ToListAsync();
+        return Ok(inventories);
+    }  
+ 
 
     public IActionResult Privacy()
     {
