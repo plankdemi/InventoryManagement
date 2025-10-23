@@ -46,25 +46,28 @@
 </div>
 
     
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Inventory ID</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Number Of Items</th>
+       
+    </tr>
+    </thead>
+    <tbody id="table-newest-body">
+    
+    </tbody>
+</table>
     
 @* TODO MAKE THE FORMIT SUBMIT, CREATE A DB WITH NAME AND SPECIFIED FIELDS, FOR THAT FIRST SETUP CONNECTION TO THE DATABASE, ADD THE REQUIRED PACKAGES, ETC *@
 
-@model IEnumerable<InventoryManagement.Models.Inventory>
-<table>
-    @foreach (var i in Model)
-    {
-        <tr>
-            <td>@i.InventoryId</td>
-            <td>@i.NumofItems</td>
-            <td>@i.CreatedAt</td>
-        </tr>
-    }
-</table>
 
 
 
 
 
 @section Scripts {
+    <script src="~/js/homeScripts.js"></script>
     <script src="~/js/inventoryCreation.js"></script>
 }
