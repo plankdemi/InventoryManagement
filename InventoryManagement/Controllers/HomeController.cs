@@ -2,10 +2,12 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManagement.Models;
 using InventoryManagement.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Controllers;
 
+[AllowAnonymous]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

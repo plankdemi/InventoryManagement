@@ -24,12 +24,12 @@ public class Program
         builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
             .AddCookie(options =>
             {
-                options.LoginPath = "/Login";
-                options.AccessDeniedPath = "/Login";
+                options.LoginPath = "/";
+                options.AccessDeniedPath = "/";
             })
             .AddGoogle(googleOptions =>
             {

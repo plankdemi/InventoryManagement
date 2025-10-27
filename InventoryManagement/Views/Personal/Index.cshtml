@@ -3,6 +3,31 @@
 }
 
 
+<h2>OWNED INVENTORIES</h2>
+<button type="button"
+        class="btn btn-primary w-100"
+        data-bs-toggle="collapse"
+        data-bs-target="#newInvWrap">
+    NEW INVENTORY
+</button>
+
+<div id="newInvWrap" class="collapse mt-3">
+    @await Html.PartialAsync("InventoryCreationPartial")
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <script src="~/js/inventoryCreation.js"></script>
+}
+
+
+
 @* TODO Every user has their own personal page, where they can manage two sortable/filterable tables: *@
 @* A table of inventories they own (with options to create new, delete, or edit). *@
 @* A table of inventories they have write access to. *@
