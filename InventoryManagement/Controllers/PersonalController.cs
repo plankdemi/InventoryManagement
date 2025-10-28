@@ -1,4 +1,5 @@
 ﻿using InventoryManagement.Data;
+using InventoryManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +19,23 @@ public class PersonalController:Controller
         return View();
     }
 
-    [HttpPost, FromForm]
-    public IActionResult CreateNewInventory()
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateNewInventory(CreateInventoryCmd cmd)
     {
-        
+        var inv = new Inventory
+        {
+            Name = cmd.Name?.Trim(),
+            CreatedAt = DateTime.UtcNow,
+            Fields = (cmd.Fields ?? new())
+                .Where(f => !string.IsNullOrWhiteSpace(f.Name) && !string.IsNullOrWhiteSpace(f.Type))
+                .Select(f => new InventoryField { Name = f.Name.Trim(), Type = f.Type.Trim() })
+                .ToList()
+        };
+
+        _context.Inventories.Add(inv);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("PersonalPage"); // or wherever you list inventories
         
     }
     

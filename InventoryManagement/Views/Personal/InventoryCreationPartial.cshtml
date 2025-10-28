@@ -1,18 +1,30 @@
-﻿<form onsubmit="/CreateNewInventory">
+﻿
+<form asp-action="CreateNewInventory"
+      asp-controller="Personal"
+      method="post">
+    @Html.AntiForgeryToken()
+
     <div id="table-creation-step-1">
         <div class="mb-3">
             <label for="table-name" class="form-label">Inventory Name</label>
-            <input type="text" class="form-control" id="table-name">
+            <input type="text" class="form-control" id="table-name" name="Name">
         </div>
     </div>
 
     <div class="d-none" id="table-creation-step-2">
         <div id="table-fields">
-            <div class="mb-3 d-flex align-items-center gap-3" id="field-1">
+            <!-- first dynamic field row (index 0) -->
+            <div class="mb-3 d-flex align-items-center gap-3 field-row" id="field-1" data-index="0">
                 <label for="field-name-1" class="form-label mb-0">Field 1</label>
-                <input type="text" class="form-control w-auto" id="field-name-1" placeholder="Name">
-                <select class="form-select w-auto" id="field-type-1">
-                    <option selected disabled>Type</option>
+                <input type="text"
+                       class="form-control w-auto"
+                       id="field-name-1"
+                       name="Fields[0].Name"
+                       placeholder="Name">
+                <select class="form-select w-auto"
+                        id="field-type-1"
+                        name="Fields[0].Type">
+                    <option value="" selected disabled>Type</option>
                     <option value="string">String</option>
                     <option value="integer">Integer</option>
                     <option value="boolean">Boolean</option>

@@ -2,7 +2,7 @@
 
 namespace InventoryManagement.Models;
 
-public class CreateInventoryDto
+public class CreateInventoryCmd
 {
     [Required] 
     public string Name { get; set; }
