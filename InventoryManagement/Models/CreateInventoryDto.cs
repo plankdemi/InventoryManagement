@@ -15,4 +15,5 @@ public class DynamicFieldDto
     public string Name { get; set; }
     [Required] 
     public string Type { get; set; } // "string" | "integer" | "boolean"
+
 }
