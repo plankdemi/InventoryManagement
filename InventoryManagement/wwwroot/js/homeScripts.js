@@ -1,4 +1,6 @@
-﻿let allInventories = [];
+﻿let allInventoriesLatest = [];
+let allInventoriesPopular = [];
+
 
 document.addEventListener("DOMContentLoaded", () => {
     loadInventories();
@@ -15,10 +17,10 @@ async function loadInventories() {
     tBody2.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
     
     const res =await fetch("/Home/GetAllInventorySortByNewest/");
-    let allInventoriesLatest = await res.json();
+     allInventoriesLatest = await res.json();
 
     const res2 =await fetch("/Home/GetAllInventorySortByPopularity/");
-    let allInventoriesPopular = await res2.json();
+     allInventoriesPopular = await res2.json();
     
     renderInventories(allInventoriesLatest, "table-newest-body");
     renderInventories(allInventoriesPopular, "table-newest-body2");
