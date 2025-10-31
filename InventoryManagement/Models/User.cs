@@ -25,5 +25,8 @@ public class User
     public bool IsAdmin { get; set; } = false;
 
 
+    public int InventoriesCreated { get; set; } = 0;
+
+
 
 }
