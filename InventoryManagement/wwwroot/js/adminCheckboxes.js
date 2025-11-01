@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const checkboxes = document.querySelectorAll(".row-check");
         checkboxes.forEach(cb => cb.checked = this.checked);
         checkAll.indeterminate = false;
-        console.log(checkboxes);
+        
     });
 
   
