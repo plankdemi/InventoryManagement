@@ -42,7 +42,8 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col"><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for user selection" id="main-checkbox"></th>
+        <th scope="col"><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for user selection" id="check-all"></th>
+        <th scope="col">Status</th>
         <th scope="col">Username</th>
         <th scope="col">Inventories Created</th>
         <th scope="col">Is Admin?</th>
@@ -60,6 +61,7 @@
 
 @section Scripts{
     <script src="~/js/adminScripts.js"></script>
+    <script src="~/js/adminCheckboxes.js"></script>
 }
 
 @* TODO The admin page allows user management, including: viewing, blocking, unblocking, deleting users, adding users to the admin role, and removing them from it. *@

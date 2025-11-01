@@ -31,4 +31,24 @@ public class AdminController : Controller
         return Ok(users);
 
     }
+
+    // [HttpPut]
+    // public async Task<ActionResult<User>> UpdateAdminStatus(User user)
+    // {
+    //     
+    // }
+    //
+    // [HttpPut]
+    // public async Task<ActionResult<User>> UpdateUserStatus(User user)
+    // {
+    //     
+    // }
+    //
+    // [HttpDelete]
+    // public async Task<ActionResult<User>> DeleteUser(User user)
+    // {
+    //     
+    // }
+    //
+    
 }

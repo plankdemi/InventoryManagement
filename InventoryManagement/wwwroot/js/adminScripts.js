@@ -30,10 +30,30 @@ function renderUsers(users, body){
 
         `
     <tr>
-    <td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for user selection" id="checkbox ${index}"></td>
+    
+    
+    <td><input class="form-check-input mt-0 row-check" type="checkbox" data-id="${user.id}"></td>
+    <td>${userStatus(user.userStatus)}</td>
     <td>${user.username}</td>
-      <td>${user.inventoriesCreated}</td>
-      <td>${user.isAdmin ? "Yes" : "No"}</td>
-      <td>${user.createdAt ? new Date(user.createdAt).toLocaleString() : ""}</td>
+    <td>${user.inventoriesCreated}</td>
+    <td>${user.isAdmin ? "Yes" : "No"}</td>
+    <td>${user.createdAt ? new Date(user.createdAt).toLocaleString() : ""}</td>
+    </tr>
 `).join("");
 }
+
+function userStatus(status){
+    
+   
+    switch (status) {
+        case 0:
+            return `<span class="badge bg-warning text-dark">UNVERIFIED</span>`
+        case 1:
+            return `<span class="badge bg-success">VERIFIED</span>`
+        case 2:
+            return `<span class="badge bg-danger">BLOCKED</span>`
+    }
+
+
+}
+

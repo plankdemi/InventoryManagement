@@ -5,6 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InventoryManagement.Models;
 
+public enum UserStatus
+{
+    Unverified,
+    Verified,
+    Blocked
+}
+
 public class User
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,6 +33,8 @@ public class User
 
 
     public int InventoriesCreated { get; set; } = 0;
+    
+    public UserStatus UserStatus { get; set; } = UserStatus.Unverified;
 
 
 
