@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using InventoryManagement.Data;
+using InventoryManagement.Models;
 using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace InventoryManagement.Controllers
@@ -39,6 +40,12 @@ namespace InventoryManagement.Controllers
             
 
             var user = await GetOrCreateUserAsync(email, "Google");
+
+            if (user.UserStatus == UserStatus.Blocked)
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return RedirectToAction("Index", "Home");
+            }
 
             var claims = new List<Claim>
             {
@@ -80,6 +87,12 @@ namespace InventoryManagement.Controllers
             }
 
             var user = await GetOrCreateUserAsync(email, "Facebook");
+            
+            if (user.UserStatus == UserStatus.Blocked)
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return RedirectToAction("Index", "Home");
+            }
 
             var claims = new List<Claim>
             {

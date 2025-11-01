@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using InventoryManagement.Models;
 using InventoryManagement.Data;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +47,11 @@ public class AdminController : Controller
             case "RM_ADMIN":
                 user.IsAdmin = false;
                 await _context.SaveChangesAsync();
+                if (User.FindFirstValue("UserId") == user.Id.ToString())
+                {
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                    return Unauthorized(new { redirect = Url.Action("Index", "Home") });
+                }
                 return Ok("User is no longer an admin");
             case "ADD_ADMIN":
                 user.IsAdmin = true;
@@ -66,6 +74,11 @@ public class AdminController : Controller
             case "BLOCK":
                 user.UserStatus = UserStatus.Blocked;
                 await _context.SaveChangesAsync();
+                if (User.FindFirstValue("UserId") == user.Id.ToString())
+                {
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                    return Unauthorized(new { redirect = Url.Action("Index", "Home") });
+                }
                 return Ok("User Blocked");
             case "UNBLOCK":
                 if(user.UserStatus != UserStatus.Blocked) return BadRequest("User Not Blocked");
@@ -86,6 +99,11 @@ public class AdminController : Controller
          
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
+        if (User.FindFirstValue("UserId") == user.Id.ToString())
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Unauthorized(new { redirect = Url.Action("Index", "Home") });
+        }
         return Ok("User deleted");
 
     }
