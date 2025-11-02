@@ -48,28 +48,15 @@
         <th scope="col">Inventories Created</th>
         <th scope="col">Is Admin?</th>
         <th scope="col">Registered On</th>
-       
     </tr>
     </thead>
     <tbody id="users-body">
-  
-
     </tbody>
 </table>
-<button type="button" class="btn btn-primary">Update</button>
+
 
 
 @section Scripts{
     <script src="~/js/adminScripts.js"></script>
     <script src="~/js/adminCheckboxes.js"></script>
 }
-
-@* TODO The admin page allows user management, including: viewing, blocking, unblocking, deleting users, adding users to the admin role, and removing them from it. *@
-@* *@
-@* Important: AN ADMIN CAN REMOVE ADMIN ACCESS FROM THEMSELVES. *@
-@* *@
-@* Admins have full access and can view all pages as if they were the creator. For example, an admin can open another user's inventory and add fields or edit items—effectively acting as the owner of every inventory. *@
-@* *@
-@* Only the creators (and admins) can edit their inventories (e.g., add/edit/delete fields, manage access, etc.). Creators define which users have write access (add/edit/delete) to their inventory. Creators can also mark an inventory as public, granting write access to all authenticated users. *@
-@* *@
-@* Items in an inventory can be modified by the creator (and admins), and any users with write access (or by all authenticated users if the inventory is public). *@
