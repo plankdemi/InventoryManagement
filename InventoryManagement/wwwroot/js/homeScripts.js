@@ -1,49 +1,11 @@
 ﻿
 let allInventoriesLatest = [];
 let allInventoriesPopular = [];
-let iteration = 0
 
-const customIdValue = document.getElementById("custom-id-value");
-let customId = "TESTING";
-
-const list = document.querySelector(".list-group");
-const elementToAdd = document.querySelector(".list-group-item");
-const addElementBtn = document.getElementById("add-element-btn");
-
-
-elementToAdd.removeAttribute("id");
-
-
-addElementBtn.addEventListener("click", () => {
-    const clone = elementToAdd.cloneNode(true);
-    iteration++;
-
-    const emojis = clone.querySelector("#emojis"); 
-    if (emojis) {
-        emojis.id = `emojis-${iteration}`;
-    }
-
-    list.appendChild(clone);
-});
-
-
-list.addEventListener("change", (e) => {
-    if (e.target.matches(".form-select")) {
-        
-       switch(e.target.value){
-           case "Fixed":
-       }
-        
-    }
-});
-
-function updateCustomIdValue() {
-    customIdValue.innerText = customIdValue.innerText + " " + customId;
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     loadInventories();
-    updateCustomIdValue();
+   
 });
 
 
