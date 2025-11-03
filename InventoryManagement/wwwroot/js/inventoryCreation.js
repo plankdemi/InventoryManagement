@@ -29,9 +29,11 @@ addFieldBtn.addEventListener("click", (e) => {
             id="field-type-${fieldCount}"
             name="Fields[${index}].Type">
       <option value="" selected disabled>Type</option>
-      <option value="string">String</option>
-      <option value="integer">Integer</option>
-      <option value="boolean">Boolean</option>
+                    <option value="string-single">Single Line</option>
+                    <option value="string-multi">Multi Line</option>
+                    <option value="float">Numeric</option>
+                    <option value="boolean">Checkbox</option>
+                    <option value="link">Document/Image (Entered As A Link)</option>
     </select>
   `;
     container.appendChild(row);
