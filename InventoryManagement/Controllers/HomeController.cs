@@ -48,7 +48,33 @@ public class HomeController : Controller
             .OrderByDescending(i=>i.NumofItems)
             .ToListAsync();
         return Ok(inventories);
-    }  
+    }
+
+
+    [HttpGet]
+    public async Task<ActionResult<Guid>> GetUsername(string id)
+    {
+        var username = await _context.Users
+            .AsNoTracking()
+            .Where(u=> u.Id == Guid.Parse(id))
+            .Select(u=> u.Username)
+            .FirstOrDefaultAsync();
+        if(username is null) return NotFound();
+        return Ok(username);
+       
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult<string>> GetInventoryName(string id)
+    {
+        var title = await _context.FullInventories
+            .AsNoTracking()
+            .Where(i => i.InventoryId == id)
+            .Select(i => i.Title)
+            .FirstOrDefaultAsync();
+        if (title is null) return NotFound();
+        return Ok(title);
+    }
  
 
     public IActionResult Privacy()

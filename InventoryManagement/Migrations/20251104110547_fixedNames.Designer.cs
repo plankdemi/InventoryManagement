@@ -4,6 +4,7 @@ using InventoryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251104110547_fixedNames")]
+    partial class fixedNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,23 +31,19 @@ namespace InventoryManagement.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("InventoryId")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("CustomBoolName1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                    b.Property<bool>("CustomBoolName1")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("CustomBoolName2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                    b.Property<bool>("CustomBoolName2")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("CustomBoolName3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                    b.Property<bool>("CustomBoolName3")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("CustomBoolState1")
                         .HasColumnType("tinyint(1)");
@@ -55,26 +54,17 @@ namespace InventoryManagement.Migrations
                     b.Property<bool>("CustomBoolState3")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("CustomBoolValue1")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CustomBoolValue2")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CustomBoolValue3")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("CustomIntName1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomIntName2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomIntName3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("CustomIntState1")
                         .HasColumnType("tinyint(1)");
@@ -85,29 +75,17 @@ namespace InventoryManagement.Migrations
                     b.Property<bool>("CustomIntState3")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("CustomIntValue1")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CustomIntValue2")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CustomIntValue3")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
                     b.Property<string>("CustomLinkName1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomLinkName2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomLinkName3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("CustomLinkState1")
                         .HasColumnType("tinyint(1)");
@@ -118,29 +96,20 @@ namespace InventoryManagement.Migrations
                     b.Property<bool>("CustomLinkState3")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("CustomLinkValue1")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CustomLinkValue2")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CustomLinkValue3")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("CustomMultStringState1")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("CustomMultiStringName1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomMultiStringName2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomMultiStringName3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("CustomMultiStringState2")
                         .HasColumnType("tinyint(1)");
@@ -148,29 +117,17 @@ namespace InventoryManagement.Migrations
                     b.Property<bool>("CustomMultiStringState3")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("CustomMultiStringValue1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomMultiStringValue2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomMultiStringValue3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("CustomSingleStringName1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomSingleStringName2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CustomSingleStringName3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("CustomSingleStringState1")
                         .HasColumnType("tinyint(1)");
@@ -181,25 +138,14 @@ namespace InventoryManagement.Migrations
                     b.Property<bool>("CustomSingleStringState3")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("CustomSingleStringValue1")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomSingleStringValue2")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomSingleStringValue3")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ImageUrl")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsPublic")
                         .HasColumnType("tinyint(1)");

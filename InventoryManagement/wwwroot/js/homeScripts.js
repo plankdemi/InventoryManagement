@@ -32,11 +32,11 @@ async function loadInventories() {
         allInventoriesPopular = [];
     }
 
-    renderInventories(allInventoriesLatest, "table-newest-body");
-    renderInventories(allInventoriesPopular, "table-newest-body2");
+    await renderInventories(allInventoriesLatest, "table-newest-body");
+    await renderInventories(allInventoriesPopular, "table-newest-body2");
 }
 
-function renderInventories(inventories, bodyId) {
+async function renderInventories(inventories, bodyId) {
     const tBody = document.getElementById(bodyId);
 
     if (!inventories || inventories.length === 0) {
@@ -44,12 +44,37 @@ function renderInventories(inventories, bodyId) {
         return;
     }
 
-    
-    tBody.innerHTML = inventories.map(i => `
-    <tr>
-      <td>${i.InventoryId}</td>
-      <td>${i.UserId}</td>
-      <td>${i.NumOfItems}</td>
-    </tr>
-  `).join("");
+    const rows = await Promise.all(
+        inventories.map(async i => {
+            const inventoryName = await getInventoryName(i.inventoryId);
+            const username = await getUsername(i.userId);
+            return `
+        <tr>
+          <td>${inventoryName}</td>
+          <td>${username}</td>
+          <td>${i.numofItems}</td>
+        </tr>`;
+        })
+    );
+
+    tBody.innerHTML = rows.join("");
+}
+
+async function getInventoryName(inventoryId) {
+    try {
+        const res = await fetch(`/Home/GetInventoryName/${inventoryId}`); 
+        if (!res.ok) return String(inventoryId);
+        return (await res.text()).trim();
+    } catch {
+        return String(inventoryId);
+    }
+}
+async function getUsername(userId){
+    try {
+        const res = await fetch(`/Home/GetUsername/${userId}`); 
+        if (!res.ok) return String(userId);
+        return (await res.text()).trim();
+    } catch {
+        return String(userId);
+    }
 }

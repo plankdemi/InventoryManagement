@@ -7,13 +7,13 @@
     <div id="table-creation-step-1">
         <div class="mb-3">
             <label for="table-name" class="form-label">Inventory Name</label>
-            <input type="text" class="form-control" id="table-name" name="Name">
+            <input type="text" class="form-control" id="table-name" name="Title">
         </div>
     </div>
 
     <div class="d-none" id="table-creation-step-2">
         <div id="table-fields">
-            <!-- first dynamic field row (index 0) -->
+            
             <div class="mb-3 d-flex align-items-center gap-3 field-row" id="field-1" data-index="0">
                 <label for="field-name-1" class="form-label mb-0">Field 1</label>
                 <input type="text"
@@ -35,14 +35,14 @@
         </div>
 
         <div class="mb-3 d-flex align-items-center">
-            <button type="button" class="btn btn-primary" id="add-field">Add Field</button>
-            <button type="button" class="btn btn-primary disabled" id="remove-field">Remove Field</button>
+            <button type="button" class="btn btn-primary rounded-end-0" id="add-field">Add Field</button>
+            <button type="button" class="btn btn-primary disabled rounded-start-0" id="remove-field">Remove Field</button>
         </div>
     </div>
 
     <div class="mb-3 d-flex align-items-center justify-content-center">
-        <button type="button" class="btn btn-primary d-none" id="previous-btn">Previous</button>
-        <button type="button" class="btn btn-primary" id="next-btn">Next</button>
-        <button type="submit" id="create-inventory" class="btn btn-primary d-none">Create</button>
+        <button type="button" class="btn btn-primary d-none w-50 rounded-end-0" id="previous-btn">Previous</button>
+        <button type="button" class="btn btn-primary w-100" id="next-btn">Next</button>
+        <button type="submit" id="create-inventory" class="btn btn-primary d-none w-50 rounded-start-0">Create</button>
     </div>
 </form>
