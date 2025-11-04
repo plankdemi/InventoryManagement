@@ -50,13 +50,11 @@ public class PersonalController : Controller
         try
         {
             await _context.SaveChangesAsync();
-            return Ok(new { message = "New Inventory Created" });
+            return RedirectToAction(nameof(Index));
+        }catch (DbUpdateException){
+             return RedirectToAction(nameof(Index));
         }
-         catch (DbUpdateException)
-         {
-             return StatusCode(500, new { message = "An error occurred while saving. Please try again." });
-         }
     }
 
-    //TODO, MOST IMPORTANT WORK ON HOME PAGE > PERSONAL PAGE FIRST > WORK ON INVENTORY PAGE > WORK ON ITEMS PAGE
+   
 }

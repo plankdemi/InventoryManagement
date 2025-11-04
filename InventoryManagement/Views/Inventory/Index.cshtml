@@ -5,7 +5,7 @@
 
 
 
-<h2>Table Name</h2>
+<h2 id="inventory-name">Table Name</h2>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="items-tab" data-bs-toggle="tab" data-bs-target="#items" type="button" role="tab">Items</button>
@@ -461,9 +461,19 @@
     </div>
     
     
-    //TODO fields, access, items, all DATABASE GET REQUESTS
     <div class="tab-pane fade" id="fields" role="tabpanel">5</div>
-    <div class="tab-pane fade" id="access" role="tabpanel">6</div>
+    <div class="tab-pane fade" id="access" role="tabpanel">
+        
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" checked value="" id="is-inventory-public">
+            <label class="form-check-label" for="is-inventory-public">
+                Is inventory public?
+            </label>
+        </div>
+        <button type="button" class="btn btn-primary my-2" id="update-inventory-public">Update</button>
+        
+        
+    </div>
     <div class="tab-pane fade" id="stats" role="tabpanel">7</div>
     <div class="tab-pane fade" id="export" role="tabpanel">8</div>
 </div>

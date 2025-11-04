@@ -12,6 +12,8 @@ public class FullInventory
     
     [MaxLength(256)]
     public string InventoryId { get; set; } = Guid.NewGuid().ToString();
+
+    [MaxLength(256)] public string InventoryCustomId { get; set; } = "";
     
     [Required, MaxLength(50)]
     public string Title {get;set;}
