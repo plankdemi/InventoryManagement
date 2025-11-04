@@ -36,7 +36,7 @@ public class AdminController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAdminStatus(int id, string cmd)
+    public async Task<IActionResult> UpdateAdminStatus(Guid id, string cmd)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(user=> user.Id == id);
@@ -63,7 +63,7 @@ public class AdminController : Controller
     }
     
     [HttpPut]
-    public async Task<IActionResult> UpdateUserStatus(int id, string cmd)
+    public async Task<IActionResult> UpdateUserStatus(Guid id, string cmd)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(user => user.Id == id);
@@ -91,7 +91,7 @@ public class AdminController : Controller
     }
     
     [HttpDelete]
-    public async Task<IActionResult> DeleteUser(int id)
+    public async Task<IActionResult> DeleteUser(Guid id)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(user => user.Id == id);

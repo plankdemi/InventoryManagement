@@ -2,6 +2,7 @@
 using InventoryManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Controllers;
 
@@ -20,22 +21,15 @@ public class PersonalController:Controller
     }
 
     // [HttpPost, ValidateAntiForgeryToken]
-    // public async Task<IActionResult> CreateNewInventory(CreateInventoryCmd cmd)
+    // public async Task<IActionResult> CreateNewInventory([FromForm] FullInventory fullInventory)
     // {
-    //     var inv = new InventoryManagement.Models.DynamicFieldDto()
-    //     {
-    //         Name = cmd.Name?.Trim(),
-    //         CreatedAt = DateTime.UtcNow,
-    //         Fields = (cmd.Fields ?? new())
-    //             .Where(f => !string.IsNullOrWhiteSpace(f.Name) && !string.IsNullOrWhiteSpace(f.Type))
-    //             .Select(f => new InventoryField { Name = f.Name.Trim(), Type = f.Type.Trim() })
-    //             .ToList()
-    //     };
-    //
-    //     _context.Inventories.Add(inv);
-    //     await _context.SaveChangesAsync();
-    //
-    //     return RedirectToAction("PersonalPage"); // or wherever you list inventories
+    //     if (!ModelState.IsValid)
+    //         return BadRequest(new { message = "Invalid form data." });
+    //     
+    //     var existingInventory = await _context.FullInventories
+    //         .AsNoTracking()
+    //         .FirstOrDefaultAsync(i => i.InventoryId == fullInventory.InventoryId);
+    //         
     //     
     // }
     

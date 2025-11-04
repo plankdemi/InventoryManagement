@@ -28,7 +28,7 @@ namespace InventoryManagement.Controllers
                 .FirstOrDefaultAsync(u => u.Username == user.Username);
 
             if (existingUser != null)
-                return Conflict(new { message = "This email is already registered." });
+                return Conflict(new { message = "This username is already taken." });
 
             user.CreatedAt = DateTime.UtcNow;
             _context.Users.Add(user);

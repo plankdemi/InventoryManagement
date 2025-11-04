@@ -13,6 +13,8 @@ public class AppDbContext: DbContext
     
     public DbSet<User> Users { get; set; }
     public DbSet<Inventory> Inventories { get; set; }
+    
+    public DbSet<FullInventory> FullInventories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,6 +26,17 @@ public class AppDbContext: DbContext
             .WithMany()
             .HasForeignKey(i => i.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        
+        modelBuilder.Entity<FullInventory>()
+            .HasKey(fi=> new{fi.UserId,fi.InventoryId});
+        
+        modelBuilder.Entity<FullInventory>()
+            .HasOne<User>()
+            .WithMany()
+            .HasForeignKey(i => i.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
         
         
         base.OnModelCreating(modelBuilder);

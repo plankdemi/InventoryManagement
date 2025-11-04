@@ -5,7 +5,7 @@ namespace InventoryManagement.Models;
 public class Inventory
 {
     [Required]
-    public int UserId {get;set;}
+    public Guid UserId {get;set;}
     [Required]
     public string InventoryId { get; set; }
 
