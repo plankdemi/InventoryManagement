@@ -12,7 +12,7 @@ addAdminUserBtn.addEventListener("click", async(e) => {
     e.preventDefault();
     await Promise.all(
         [...document.querySelectorAll(".row-check:checked")]
-            .map(el => fetch(`Admin/UpdateAdminStatus/${el.dataset.id}?cmd=ADD_ADMIN`, { method: "PUT" }))
+            .map(el => fetch(`/Admin/UpdateAdminStatus/${el.dataset.id}?cmd=ADD_ADMIN`, { method: "PUT" }))
     );
     document.getElementById("check-all").indeterminate = false;
     await loadUsers();
@@ -22,7 +22,7 @@ rmAdminUserBtn.addEventListener("click", async(e) => {
     e.preventDefault();
     await Promise.all(
         [...document.querySelectorAll(".row-check:checked")]
-            .map(el => fetch(`Admin/UpdateAdminStatus/${el.dataset.id}?cmd=RM_ADMIN`, { method: "PUT" }))
+            .map(el => fetch(`/Admin/UpdateAdminStatus/${el.dataset.id}?cmd=RM_ADMIN`, { method: "PUT" }))
     );
     document.getElementById("check-all").indeterminate = false;
     await loadUsers();
@@ -33,7 +33,7 @@ unblockUserBtn.addEventListener("click", async(e) => {
     e.preventDefault();
     await Promise.all(
         [...document.querySelectorAll(".row-check:checked")]
-            .map(el => fetch(`Admin/UpdateUserStatus/${el.dataset.id}?cmd=UNBLOCK`, { method: "PUT" }))
+            .map(el => fetch(`/Admin/UpdateUserStatus/${el.dataset.id}?cmd=UNBLOCK`, { method: "PUT" }))
     );
     document.getElementById("check-all").indeterminate = false;
     await loadUsers();
@@ -45,7 +45,7 @@ blockUserBtn.addEventListener("click", async(e) => {
     e.preventDefault();
     await Promise.all(
         [...document.querySelectorAll(".row-check:checked")]
-            .map(el => fetch(`Admin/UpdateUserStatus/${el.dataset.id}?cmd=BLOCK`, { method: "PUT" }))
+            .map(el => fetch(`/Admin/UpdateUserStatus/${el.dataset.id}?cmd=BLOCK`, { method: "PUT" }))
     );
     document.getElementById("check-all").indeterminate = false;
     await loadUsers();
@@ -55,7 +55,7 @@ deleteUserBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     await Promise.all(
         [...document.querySelectorAll(".row-check:checked")]
-            .map(el => fetch(`Admin/DeleteUser/${el.dataset.id}`, { method: "DELETE" }))
+            .map(el => fetch(`/Admin/DeleteUser/${el.dataset.id}`, { method: "DELETE" }))
     );
     document.getElementById("check-all").indeterminate = false;
     await loadUsers();
@@ -73,7 +73,7 @@ async function loadUsers(){
     tBody.innerHTML = "<tr><td colspan='6'>Loading...</td></tr>";
     
     
-    const res = await fetch("Admin/GetAllUsers/")
+    const res = await fetch("/Admin/GetAllUsers/")
     allUsers = await res.json()
     
     

@@ -5,7 +5,7 @@ namespace InventoryManagement.Controllers;
 public class InventoryController : Controller
 {
     // GET
-    public IActionResult Index()
+    public IActionResult Index(string id)
     {
         return View();
     }

@@ -1,11 +1,10 @@
-﻿
-let allInventoriesLatest = [];
+﻿let allInventoriesLatest = [];
 let allInventoriesPopular = [];
 
 
 document.addEventListener("DOMContentLoaded", () => {
     loadInventories();
-   
+
 });
 
 
@@ -45,33 +44,39 @@ async function renderInventories(inventories, bodyId) {
     }
 
     const rows = await Promise.all(
-        inventories.map(async i => {
+        inventories.map(async (i) => {
             const inventoryName = await getInventoryName(i.inventoryId);
             const username = await getUsername(i.userId);
             return `
-        <tr>
-          <td>${inventoryName}</td>
-          <td>${username}</td>
-          <td>${i.numofItems}</td>
-        </tr>`;
+      <tr class="position-relative">
+        <td>
+          ${inventoryName}
+          <a class="stretched-link" href="/Inventory/Index/${i.inventoryId}"></a>
+        </td>
+        <td>${username}</td>
+        <td>${i.numofItems}</td>
+      </tr>
+    `;
         })
     );
+
 
     tBody.innerHTML = rows.join("");
 }
 
 async function getInventoryName(inventoryId) {
     try {
-        const res = await fetch(`/Home/GetInventoryName/${inventoryId}`); 
+        const res = await fetch(`/Home/GetInventoryName/${inventoryId}`);
         if (!res.ok) return String(inventoryId);
         return (await res.text()).trim();
     } catch {
         return String(inventoryId);
     }
 }
-async function getUsername(userId){
+
+async function getUsername(userId) {
     try {
-        const res = await fetch(`/Home/GetUsername/${userId}`); 
+        const res = await fetch(`/Home/GetUsername/${userId}`);
         if (!res.ok) return String(userId);
         return (await res.text()).trim();
     } catch {
