@@ -22,13 +22,33 @@ public class PersonalController : Controller
         return View();
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<FullInventory>>> GetPersonalInventory()
+    {
+        
+        var value = User.FindFirstValue("UserId"); 
+        if (!Guid.TryParse(value, out var userId))
+            throw new UnauthorizedAccessException("Invalid or missing UserId claim.");
+        
+        var user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u=> u.Id == userId);
+        if(user is null) return NotFound("User not found");
+
+
+        var inventories = await _context.FullInventories
+            .AsNoTracking()
+            .Where(i => i.UserId == user.Id)
+            .ToListAsync();
+        return Ok(inventories);
+
+    }
+    
+    
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateNewInventory([FromForm] FullInventory fullInventory)
     {
-        // if (!ModelState.IsValid)
-        //     return BadRequest(new { message = "Invalid form data." });
-
-        var value = User.FindFirstValue("UserId"); // string?
+        
+        var value = User.FindFirstValue("UserId"); 
         if (!Guid.TryParse(value, out var userId))
             throw new UnauthorizedAccessException("Invalid or missing UserId claim.");
 
@@ -46,7 +66,11 @@ public class PersonalController : Controller
             
         };
         _context.Inventories.Add(inventory);
-
+        
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+        if(user is null) return NotFound("User not found");
+        user.InventoriesCreated += 1;
+        
         try
         {
             await _context.SaveChangesAsync();
