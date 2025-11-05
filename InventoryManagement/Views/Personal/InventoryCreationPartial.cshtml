@@ -1,7 +1,8 @@
 ﻿
 <form asp-action="CreateNewInventory"
       asp-controller="Personal"
-      method="post">
+      method="post"
+      id="inventoryForm">
     @Html.AntiForgeryToken()
 
     <div id="table-creation-step-1">
@@ -19,15 +20,13 @@
                 <input type="text"
                        class="form-control w-auto"
                        id="field-name-1"
-                       name="Fields[0].Name"
+                       name=""
                        placeholder="Name">
-                <select class="form-select w-auto"
-                        id="field-type-1"
-                        name="Fields[0].Type">
-                    <option value="" selected disabled>Type</option>
+                <select class="form-select w-auto">
+                    <option value="type" selected disabled>Type</option>
                     <option value="string-single">Single Line</option>
                     <option value="string-multi">Multi Line</option>
-                    <option value="float">Numeric</option>
+                    <option value="numeric">Numeric</option>
                     <option value="boolean">Checkbox</option>
                     <option value="link">Document/Image (Entered As A Link)</option>
                 </select>
@@ -42,7 +41,7 @@
 
     <div class="mb-3 d-flex align-items-center justify-content-center">
         <button type="button" class="btn btn-primary d-none w-50 rounded-end-0" id="previous-btn">Previous</button>
-        <button type="button" class="btn btn-primary w-100" id="next-btn">Next</button>
+        <button type="button" class="btn btn-primary w-100" id="next-btn" disabled>Next</button>
         <button type="submit" id="create-inventory" class="btn btn-primary d-none w-50 rounded-start-0">Create</button>
     </div>
 </form>

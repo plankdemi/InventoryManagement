@@ -45,7 +45,7 @@ public class FullInventory
     
     
     
-    public bool CustomMultStringState1 { get; set; } = false;
+    public bool CustomMultiStringState1 { get; set; } = false;
     public bool CustomMultiStringState2 { get; set; } = false;
     public bool CustomMultiStringState3 { get; set; } = false;
     [MaxLength(100)]

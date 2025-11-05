@@ -7,12 +7,28 @@ const removeFieldBtn = document.getElementById("remove-field");
 const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
 const submitBtn = document.getElementById("create-inventory");
+const myForm = document.getElementById("inventoryForm");
+
+
+const tableNameInput = document.getElementById("table-name");
+
+
+tableNameInput.addEventListener("input", function (e) {
+    
+    if(tableNameInput.value === "") {
+        nextBtn.disabled = true;
+    }else{
+        nextBtn.disabled = false;
+    }
+})
+
+
 
 addFieldBtn.addEventListener("click", (e) => {
     e.preventDefault();
     fieldCount++;
 
-    const index = fieldCount - 1; // 2nd row => index 1
+    const index = fieldCount - 1; 
     const row = document.createElement("div");
     row.className = "mb-3 d-flex align-items-center gap-3 field-row";
     row.id = `field-${fieldCount}`;
@@ -23,18 +39,16 @@ addFieldBtn.addEventListener("click", (e) => {
     <input type="text"
            class="form-control w-auto"
            id="field-name-${fieldCount}"
-           name="Fields[${index}].Name"
+           name=""
            placeholder="Name">
-    <select class="form-select w-auto"
-            id="field-type-${fieldCount}"
-            name="Fields[${index}].Type">
-      <option value="" selected disabled>Type</option>
+                <select class="form-select w-auto">
+                    <option value="type" selected disabled>Type</option>
                     <option value="string-single">Single Line</option>
                     <option value="string-multi">Multi Line</option>
-                    <option value="float">Numeric</option>
+                    <option value="numeric">Numeric</option>
                     <option value="boolean">Checkbox</option>
                     <option value="link">Document/Image (Entered As A Link)</option>
-    </select>
+                </select>
   `;
     container.appendChild(row);
     updateFieldButtons();
@@ -76,3 +90,76 @@ function updateButtons() {
     nextBtn.classList.toggle("d-none", wizardStep === totalSteps);
     submitBtn.classList.toggle("d-none", wizardStep !== totalSteps);
 }
+
+let singleLineIterator = 0;
+let multiLineIterator = 0;
+let numericIterator = 0;
+let checkboxIterator = 0;
+let docimageIterator = 0;
+let index = 1;
+myForm.addEventListener("submit", (e) => {
+    
+    const myFields = document.querySelectorAll(".form-select");
+    for (const field of myFields) {
+        switch(field.value){
+            case "string-single":
+                singleLineIterator++;
+                document.getElementById(`field-name-${index}`).name = `CustomSingleStringName${singleLineIterator}`
+                break;
+            case "string-multi":
+                multiLineIterator++;
+                document.getElementById(`field-name-${index}`).name = `CustomMultiStringName${multiLineIterator}`
+                break;
+            case "numeric":
+                numericIterator++;
+                document.getElementById(`field-name-${index}`).name = `CustomIntName${numericIterator}`
+                break;
+            case "boolean":
+                checkboxIterator++;
+                document.getElementById(`field-name-${index}`).name = `CustomBoolName${checkboxIterator}`
+                break;
+            case "link":
+                docimageIterator++;
+                document.getElementById(`field-name-${index}`).name = `CustomLinkName${docimageIterator}`
+                break;
+        }
+        index++;
+        
+        
+    }
+
+    const ok =
+        singleLineIterator <= 3 &&
+        multiLineIterator  <= 3 &&
+        numericIterator    <= 3 &&
+        checkboxIterator   <= 3 &&
+        docimageIterator   <= 3;
+
+    if (!ok) {
+        e.preventDefault();
+        return;
+    }
+
+
+});
+
+myForm.addEventListener("formdata", (e) => {
+   
+    for (let i = 1; i <= singleLineIterator; i++) {
+        e.formData.append(`CustomSingleStringState${i}`, "true");
+    }
+    
+    for (let i = 1; i <= multiLineIterator; i++) {
+        e.formData.append(`CustomMultiStringState${i}`, "true");
+    }
+    for (let i = 1; i <= numericIterator; i++) {
+        e.formData.append(`CustomIntState${i}`, "true");
+    }
+    for (let i = 1; i <= checkboxIterator; i++) {
+        e.formData.append(`CustomBoolState${i}`, "true");
+    }
+    for (let i = 1; i <= docimageIterator; i++) {
+        e.formData.append(`CustomLinkState${i}`, "true");
+    }
+});
+
